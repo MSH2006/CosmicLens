@@ -52,7 +52,7 @@ def get_region(region_id: str):
     return region
 
 
-@app.post("/api/analyze/object")
+@app.get("/api/analyze/object")
 def analyze_object(region_id: str, object_id: str):
     """Analyze a specific object for anomalies."""
     region = demo_regions.get(region_id)
