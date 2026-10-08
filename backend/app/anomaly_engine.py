@@ -72,8 +72,8 @@ class AnomalyReasoner:
         )
 
         return {
-            "anomaly_score": round(float(min(100.0, composite)), 2),
-            "evidence_confidence": round(float(evidence_confidence), 2),
+            "anomaly_score": float(round(min(100.0, composite), 2)),
+            "evidence_confidence": float(round(evidence_confidence, 2)),
             "why_interesting": explanation,
             "artifacts": artifacts,
             "data_quality": quality,
@@ -98,9 +98,9 @@ class AnomalyReasoner:
         total_motion = float(np.sum(deltas)) if deltas else 0.0
         score = min(100.0, total_motion * 12.0)
         return {
-            "score": round(score, 2),
-            "is_significant": total_motion > 1.5,
-            "total_motion_arcsec": round(total_motion, 3),
+            "score": float(round(score, 2)),
+            "is_significant": bool(total_motion > 1.5),
+            "total_motion_arcsec": float(round(total_motion, 3)),
             "description": f"Total positional change: {total_motion:.2f} arcsec",
         }
 
@@ -119,9 +119,9 @@ class AnomalyReasoner:
         variation = float(np.std(fluxes) / mean_flux) if mean_flux else 0.0
         score = min(100.0, variation * 600.0)
         return {
-            "score": round(score, 2),
-            "is_variable": variation > 0.08,
-            "fractional_variation": round(variation, 3),
+            "score": float(round(score, 2)),
+            "is_variable": bool(variation > 0.08),
+            "fractional_variation": float(round(variation, 3)),
             "description": f"Brightness variation: {variation * 100:.1f}%",
         }
 
@@ -133,8 +133,8 @@ class AnomalyReasoner:
 
         score = min(100.0, unique_wl * 15.0)
         return {
-            "score": round(score, 2),
-            "is_variable": unique_wl > 1,
+            "score": float(round(score, 2)),
+            "is_variable": bool(unique_wl > 1),
             "description": f"Observed across {unique_wl} distinct wavelengths",
         }
 
@@ -143,9 +143,9 @@ class AnomalyReasoner:
         n_epochs = len(epochs)
         score = min(100.0, n_epochs * 18.0)
         return {
-            "score": round(score, 2),
-            "is_significant": n_epochs > 2,
-            "epoch_count": n_epochs,
+            "score": float(round(score, 2)),
+            "is_significant": bool(n_epochs > 2),
+            "epoch_count": int(n_epochs),
             "description": f"Observed across {n_epochs} epochs",
         }
 
@@ -166,9 +166,9 @@ class AnomalyReasoner:
         z = abs(target - background_mean) / (background_std + 1e-9)
         score = min(100.0, z * 20.0)
         return {
-            "score": round(score, 2),
-            "is_outlier": z > 1.5,
-            "z_score": round(z, 3),
+            "score": float(round(score, 2)),
+            "is_outlier": bool(z > 1.5),
+            "z_score": float(round(z, 3)),
             "description": "Behavior differs from nearby reference sources",
         }
 
@@ -185,7 +185,7 @@ class AnomalyReasoner:
 
         quality_score = float(np.mean(quality_values))
         return {
-            "quality_score": round(quality_score * 100.0, 2),
+            "quality_score": float(round(quality_score * 100.0, 2)),
             "measurement_quality": (
                 "good" if quality_score > 0.8 else "marginal" if quality_score > 0.5 else "poor"
             ),
@@ -203,7 +203,7 @@ class AnomalyReasoner:
                 artifacts.append(
                     {
                         "type": "measurement_noise",
-                        "epoch": i,
+                        "epoch": int(i),
                         "probability": 0.22,
                         "description": "Flux uncertainty is somewhat high.",
                     }
@@ -213,7 +213,7 @@ class AnomalyReasoner:
                 artifacts.append(
                     {
                         "type": "data_quality",
-                        "epoch": i,
+                        "epoch": int(i),
                         "probability": 0.18,
                         "description": "One epoch has marginal quality.",
                     }
