@@ -1,1 +1,1 @@
-"""CosmicLens backend package."""
+"""Backend package."""
