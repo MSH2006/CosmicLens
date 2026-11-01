@@ -1,4 +1,4 @@
-# SKYTRACE AI — Complete Project Specification and 24-Hour Build Workflow
+# Cosmiclens— Complete Project Specification and 24-Hour Build Workflow
 
 **Purpose:** Canonical self-contained brief for any AI coding assistant or developer (Claude, Antigravity, DeepSeek, Manus, Copilot, or similar). Read this file before planning, coding, or changing project scope.
 
