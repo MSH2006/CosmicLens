@@ -1,6 +1,6 @@
 # Cosmiclens— Complete Project Specification and 24-Hour Build Workflow
 
-**Purpose:** Canonical self-contained brief for any AI coding assistant or developer (Claude, Antigravity, DeepSeek, Manus, Copilot, or similar). Read this file before planning, coding, or changing project scope.
+**Purpose:** Canonical self-contained brief for any AI coding assistant or developer (Claude, Antigravity, DeepSeek, Manus, Copilot, or similar). Read this file before planning, coding, or changing project scope...
 
 **Working name:** SKYTRACE AI (recommended for clarity). Alternatives: ASTRAEON (distinctive brand), COSMIC-TRACE (name used in the supplied workflow), and the original Resonant Worlds Explorer (which sounds more focused on exoplanets/astrobiology). Choose one final name and use it consistently. Suggested repository slug: `skytrace-ai`.
 
